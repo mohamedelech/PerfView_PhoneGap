@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Mobile test page</title>
+        <meta charset=utf-8 />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
+        <link href="css/jquery.mobile.datepicker.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.datepicker.theme.css" rel="stylesheet" type="text/css"/>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>       
+        <script src="js/datepicker.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script> 
+        <script src="jquery.mobile.datepicker.js"></script>
+        <script src="js/jquery.mobile.datepicker.js" type="text/javascript"></script>
+        <script src="js/index.js" type="text/javascript"></script>
+        <script>
+            $(function () {
+                $(".date-input-css").datepicker();
+            })
+        </script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+        <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+        <script type="text/javascript">
+            var db = null;
+
+            document.addEventListener('deviceready', function () {
+                db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
+            });
+
+            db.transaction(function (tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
+                tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
+                tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
+            }, function (error) {
+                console.log('Transaction ERROR: ' + error.message);
+            }, function () {
+                console.log('Populated database OK');
+            });
+
+            db.transaction(function (tx) {
+                tx.executeSql('SELECT count(*) AS mycount FROM DemoTable', [], function (tx, rs) {
+                    console.log('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
+                }, function (tx, error) {
+                    console.log('SELECT error: ' + error.message);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div data-role="page">
+            <div data-role="header">
+                <h1>Bench Press</h1>
+            </div><!-- /header -->
+            <div data-role="content">
+                <div>
+                    <label>Date</label>
+                    <input type="text" class="date-input" data-inline="false" data-role="date">
+                    <label>Weight Kg</label>
+                    <input type="number">
+                    <label>Repetitions</label>
+                    <input type="number">
+                    <label>Photo</label>
+                    <button>Import</button>
+                    <label>Address</label>
+                    <input type="text" >
+                    <button ng-click="getPosition()">Save</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

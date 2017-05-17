@@ -72,3 +72,10 @@ function getPosition() {
 }
 
 app.initialize();
+
+var app = angular.module('my-app', [])
+
+.controller('main-controller', ['$scope', function($scope)
+{
+
+}]);

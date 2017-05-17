@@ -16,6 +16,14 @@
         "cordova-plugin-geolocation": {
             "GEOLOCATION_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-camera": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-sqlite-plugin": {
+            "PACKAGE_NAME": "ch.heg.perfview"
         }
     },
     "dependent_plugins": {

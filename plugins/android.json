@@ -15,6 +15,12 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-sqlite-plugin": {
+            "PACKAGE_NAME": "ch.heg.perfview"
         }
     },
     "dependent_plugins": {

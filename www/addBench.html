@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>jQuery Mobile test page</title>
+        <title>Add Bench</title>
         <meta charset=utf-8 />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
@@ -14,12 +14,6 @@
         <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script> 
         <script src="jquery.mobile.datepicker.js"></script>
         <script src="js/jquery.mobile.datepicker.js" type="text/javascript"></script>
-        <script src="js/index.js" type="text/javascript"></script>
-        <script>
-            $(function () {
-                $(".date-input-css").datepicker();
-            });
-        </script>
         <script type="text/javascript">
             var dateInput = null;
             var weightInput = null;
@@ -38,13 +32,14 @@
                 alert("device Ready");
             }
 
+
             function savePerf() {
                 var addButton = document.getElementById("add");
                 dateInput = document.getElementById("date");
                 weightInput = document.getElementById("weight");
                 repsInput = document.getElementById("reps");
                 addressInput = document.getElementById("address");
-                
+
                 db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
                 db.transaction(
                         //function sql statements
@@ -57,9 +52,6 @@
 
                                     var sql = 'INSERT INTO Performances (date, weight,reps,address) VALUES ("' + date + '","' + weight + '","' + reps + '","' + address + '")';
                                     tx.executeSql(sql);
-                                    //tx.executeSql("Insert into Performances (date,weight,reps,address) VALUES ('12.10.2016', '90','12','ddr20')");
-
-
                                 },
                                 //error callback
                                         function (err) {
@@ -69,7 +61,7 @@
                                         //success callback
                                                 function (err) {
                                                     window.location.href = "benchList.html";
-                                                    alert("Perf Insert");                                             
+                                                    alert("Performance added");
                                                 }
                                         );
                                     }
@@ -81,11 +73,10 @@
                             /** Called when browser load this page*/
                             function init() {
                                 document.addEventListener("deviceready", onDeviceReady, false);
-                                alert("init page");
                             }
         </script>
     </head>
-    <body onLoad="init()">
+    <body onload="init()">
         <div data-role="page">
             <div data-role="header">
                 <h1>Bench Press</h1>
@@ -102,7 +93,7 @@
                     <button>Import</button>
                     <label>Address</label>
                     <input id="address" type="text" >
-                    <button id="add" onclick="savePerf();">Save</button>
+                    <button onclick="savePerf();">Save</button>
                 </div>
             </div>
         </div>

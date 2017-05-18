@@ -31,7 +31,7 @@
                 db.transaction(
                         //function sql statements
                                 function (tx) {
-                                    ensureTableExists(tx);                                                
+                                    ensureTableExists(tx);
                                     tx.executeSql('SELECT * FROM Performances',
                                             [],
                                             function (tx, results) {
@@ -70,6 +70,10 @@
                             function init() {
                                 document.addEventListener("deviceready", onDeviceReady, false);
                             }
+                            
+                            function goToAddBench() {
+                                window.location.href = "addBench.html";
+                            }
         </script>
 
         <title>Bench Press</title>
@@ -77,12 +81,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-    <body onLoad="init()">
+    <body onLoad="init();">
         <div data-role="page">
             <header data-role="header">
                 <h1>Bench Press</h1>
             </header>
-            <a class="ui-btn"  href="addBench.html" >Add</a>
+            <button onclick="goToAddBench();">Add</button>
             <ul data-role="listview" data-inset="true" id="data-table">
             </ul>           
         </div>

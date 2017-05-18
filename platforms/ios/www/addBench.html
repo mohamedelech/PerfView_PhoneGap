@@ -7,6 +7,8 @@
         <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
         <link href="css/jquery.mobile.datepicker.css" rel="stylesheet" type="text/css"/>
         <link href="css/jquery.mobile.datepicker.theme.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>       
         <script src="js/datepicker.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script> 
@@ -19,36 +21,71 @@
             });
         </script>
         <script type="text/javascript">
-            app.initialize();
-        </script>
-        <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-        <script type="text/javascript">
+            var dateInput = null;
+            var weightInput = null;
+            var repsInput = null;
+            var addressInput = null;
             var db = null;
+            /** Called when phonegap javascript is loaded */
+            function onDeviceReady() {
+                var addButton = document.getElementById("add");
+                dateInput = document.getElementById("date");
+                weightInput = document.getElementById("weight");
+                repsInput = document.getElementById("reps");
+                addressInput = document.getElementById("address");
 
-            document.addEventListener('deviceready', function () {
-                db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
-            });
+                db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
+                alert("device Ready");
+            }
 
-            db.transaction(function (tx) {
-                tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
-                tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101]);
-                tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
-            }, function (error) {
-                console.log('Transaction ERROR: ' + error.message);
-            }, function () {
-                console.log('Populated database OK');
-            });
+            function savePerf() {
+                var addButton = document.getElementById("add");
+                dateInput = document.getElementById("date");
+                weightInput = document.getElementById("weight");
+                repsInput = document.getElementById("reps");
+                addressInput = document.getElementById("address");
+                
+                db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
+                db.transaction(
+                        //function sql statements
+                                function (tx) {
+                                    ensureTableExists(tx);
+                                    var date = dateInput.value;
+                                    var weight = weightInput.value;
+                                    var reps = repsInput.value;
+                                    var address = addressInput.value;
 
-            db.transaction(function (tx) {
-                tx.executeSql('SELECT count(*) AS mycount FROM DemoTable', [], function (tx, rs) {
-                    console.log('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
-                }, function (tx, error) {
-                    console.log('SELECT error: ' + error.message);
-                });
-            });
+                                    var sql = 'INSERT INTO Performances (date, weight,reps,address) VALUES ("' + date + '","' + weight + '","' + reps + '","' + address + '")';
+                                    tx.executeSql(sql);
+                                    //tx.executeSql("Insert into Performances (date,weight,reps,address) VALUES ('12.10.2016', '90','12','ddr20')");
+
+
+                                },
+                                //error callback
+                                        function (err) {
+                                            alert("error callback " + err.code);
+
+                                        },
+                                        //success callback
+                                                function (err) {
+                                                    window.location.href = "benchList.html";
+                                                    alert("Perf Insert");                                             
+                                                }
+                                        );
+                                    }
+
+                            function ensureTableExists(tx) {
+                                tx.executeSql('CREATE TABLE IF NOT EXISTS Performances (id INTEGER PRIMARY KEY, date,weight,reps,movement,photo,address)');
+
+                            }
+                            /** Called when browser load this page*/
+                            function init() {
+                                document.addEventListener("deviceready", onDeviceReady, false);
+                                alert("init page");
+                            }
         </script>
     </head>
-    <body>
+    <body onLoad="init()">
         <div data-role="page">
             <div data-role="header">
                 <h1>Bench Press</h1>
@@ -56,16 +93,16 @@
             <div data-role="content">
                 <div>
                     <label>Date</label>
-                    <input type="text" class="date-input" data-inline="false" data-role="date">
+                    <input id="date" type="text" class="date-input" data-inline="false" data-role="date" >
                     <label>Weight Kg</label>
-                    <input type="number">
+                    <input id="weight" type="number">
                     <label>Repetitions</label>
-                    <input type="number">
+                    <input id="reps" type="number">
                     <label>Photo</label>
                     <button>Import</button>
                     <label>Address</label>
-                    <input type="text" >
-                    <button ng-click="getPosition()">Save</button>
+                    <input id="address" type="text" >
+                    <button id="add" onclick="savePerf();">Save</button>
                 </div>
             </div>
         </div>

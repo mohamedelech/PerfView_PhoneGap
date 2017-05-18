@@ -7,29 +7,83 @@
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript">
+            var firstNameBox = null;
+            var lastNameBox = null;
+            var db = null;
+            var detail = "addBench.html";
+            var dataTable = null;
+            /** Called when phonegap javascript is loaded */
+            function onDeviceReady() {
+                dataTable = document.getElementById("data-table");
+
+                db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
+
+                loadFromDB();
+            }
+
+            function loadFromDB() {
+
+                db.transaction(
+                        //function sql statements
+                                function (tx) {
+                                    ensureTableExists(tx);                                                
+                                    tx.executeSql('SELECT * FROM Performances',
+                                            [],
+                                            function (tx, results) {
+                                                var htmlStr = "";
+                                                for (var index = 0; index < results.rows.length; index++) {
+                                                    var item = results.rows.item(index);
+                                                    htmlStr = htmlStr + "<li> <a href = " + detail + " > " + item.date + "<p>" + item.weight + " Kg </p> <p>" + item.reps + " reps </p> </a> </li>";
+                                                }
+                                                dataTable.innerHTML = htmlStr;
+                                            }
+                                    ,
+                                            function (err) {
+                                                alert("Unable to fetch result from Performances Table");
+                                            }
+                                    );
+
+                                },
+                                //error callback
+                                        function (err) {
+                                            alert("error callback " + err.code + " " + err.message);
+
+                                        },
+                                        //success callback
+                                                function () {
+                                                }
+                                        );
+
+
+                                    }
+
+                            function ensureTableExists(tx) {
+                                tx.executeSql('CREATE TABLE IF NOT EXISTS Performances (id INTEGER PRIMARY KEY,date,weight,reps,movement,photo,address)');
+
+                            }
+                            /** Called when browser load this page*/
+                            function init() {
+                                document.addEventListener("deviceready", onDeviceReady, false);
+                            }
+        </script>
 
         <title>Bench Press</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-    <body>
-
+    <body onLoad="init()">
         <div data-role="page">
             <header data-role="header">
                 <h1>Bench Press</h1>
             </header>
             <a class="ui-btn"  href="addBench.html" >Add</a>
-            <ul data-role="listview" data-inset="true">
-                <li>
-                    <a href="#">01-05-2017 <p>100 Kg</p> <p>5 reps</p> </a>                   
-                </li>
-                <li>
-                    <a href="#">01-05-2017 <p>90 Kg</p> <p>15 reps</p> </a>  
-                </li>
+            <ul data-role="listview" data-inset="true" id="data-table">
             </ul>           
         </div>
     </body>

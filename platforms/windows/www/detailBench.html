@@ -1,16 +1,154 @@
 ﻿<!DOCTYPE html>
-
 <html>
     <head>
         <title>Detail Bench</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset=utf-8 />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
+        <link href="css/index.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.datepicker.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.datepicker.theme.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>       
+        <script src="js/datepicker.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script> 
+        <script src="jquery.mobile.datepicker.js"></script>
+        <script src="js/jquery.mobile.datepicker.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var dateInput = null;
+            var weightInput = null;
+            var repsInput = null;
+            var addressInput = null;
+            var db = null;
+            var id = null;
+            var imagedata;
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value
+            /** Called when phonegap javascript is loaded */
+            function onDeviceReady() {
+                dateInput = document.getElementById("date");
+                weightInput = document.getElementById("weight");
+                repsInput = document.getElementById("reps");
+                addressInput = document.getElementById("address");
+
+                db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
+
+                pictureSource = navigator.camera.PictureSourceType;
+                destinationType = navigator.camera.DestinationType;
+
+                selectPerf();
+            }
+
+
+            function selectPerf() {
+                db.transaction(
+                        //function sql statements
+                                function (tx) {
+                                    tx.executeSql('SELECT * FROM Performances WHERE id = 13',
+                                            [],
+                                            function (tx, results) {
+                                                for (var index = 0; index < results.rows.length; index++) {
+                                                    var item = results.rows.item(index);
+                                                    dateInput.value = item.date;
+                                                    weightInput.value = item.weight;
+                                                    repsInput.value = item.reps;
+                                                    addressInput.value = item.address;
+                                                    onPhotoDataSuccess(item.photo);
+                                                }
+                                            }
+                                    ,
+                                            function (err) {
+                                                alert("Unable to fetch result from Performances Table");
+                                            }
+                                    );
+                                }
+                        );
+                    }
+
+            function deletePerf() {
+                db.transaction(
+                        //function sql statements
+                                function (tx) {
+                                    tx.executeSql('DELETE FROM Performances WHERE id = 1',
+                                            [], function (err) {
+                                    },
+                                            function (err) {
+                                                alert("Unable to delete this perf from Performances Table");
+                                            }
+                                    );
+                                },
+                                //error callback
+                                        function (err) {
+                                            alert("error callback " + err.code + " " + err.message);
+
+                                        },
+                                        //success callback
+                                                function (err) {
+                                                    window.location.href = "benchList.html";
+                                                    alert("Performance deleted");
+                                                }
+                                        );
+                                    }
+
+                            function updatePerf() {
+                                db.transaction(
+                                        //function sql statements
+                                                function (tx) {
+                                                    tx.executeSql('UPDATE Performances SET date = "' + dateInput.value + '", weight = "' + weightInput.value + '", reps = "' + repsInput.value + '",photo = "' + imagedata + '",address = "' + addressInput.value + '" WHERE id = 13',
+                                                            [], function (err) {
+                                                    },
+                                                            function (err) {
+                                                                alert("Unable to update this perf");
+                                                            }
+                                                    );
+                                                },
+                                                //error callback
+                                                        function (err) {
+                                                            alert("error callback " + err.code + " " + err.message);
+
+                                                        },
+                                                        //success callback
+                                                                function (err) {
+                                                                    window.location.href = "benchList.html";
+                                                                    alert("Performance updated");
+                                                                }
+                                                        );
+                                                    }
+
+
+                                            /** Called when browser load this page*/
+                                            function init() {
+                                                document.addEventListener("deviceready", onDeviceReady, false);
+                                            }
+
+                                            function onPhotoDataSuccess(imageData) {
+
+                                                var smallImage = document.getElementById('smallImage');
+
+                                                smallImage.style.display = 'block';
+
+                                                smallImage.src = "data:image/jpeg;base64," + imageData;
+                                                imagedata = imageData;
+                                            }
+
+                                            function getPhoto(source) {
+                                                // Retrieve image file location from specified source
+                                                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50,
+                                                    destinationType: destinationType.DATA_URL,
+                                                    sourceType: source});
+                                            }
+
+                                            function onFail(message) {
+                                                alert('Failed because: ' + message);
+                                            }
+        </script>
     </head>
-    <body>
+    <body onload="init()">
         <div data-role="page">
             <div data-role="header">
                 <h1>Bench Press</h1>
-            </div>
+            </div><!-- /header -->
             <div data-role="content">
                 <div>
                     <label>Date</label>
@@ -20,10 +158,12 @@
                     <label>Repetitions</label>
                     <input id="reps" type="number">
                     <label>Photo</label>
-                    <button>Import</button>
+                    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Import</button><br>
+                    <img style="display:none;width:100% ;" id="smallImage" src="" /><br>
                     <label>Address</label>
-                    <input id="address" type="text" >
-                    <button onclick="savePerf();">Save</button>
+                    <textarea id="address" cols="40" rows="2"></textarea>
+                    <button class="buttonUpdate" onclick="updatePerf();">Update</button>
+                    <button class="buttonDelete" onclick="deletePerf();">Delete</button>
                 </div>
             </div>
         </div>

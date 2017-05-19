@@ -15,7 +15,7 @@
             var firstNameBox = null;
             var lastNameBox = null;
             var db = null;
-            var detail = "addBench.html";
+            var detail = "goToDetailBench();";
             var dataTable = null;
             /** Called when phonegap javascript is loaded */
             function onDeviceReady() {
@@ -38,7 +38,7 @@
                                                 var htmlStr = "";
                                                 for (var index = 0; index < results.rows.length; index++) {
                                                     var item = results.rows.item(index);
-                                                    htmlStr = htmlStr + "<li> <a href = " + detail + " > " + item.date + "<p>" + item.weight + " Kg </p> <p>" + item.reps + " reps </p> </a> </li>";
+                                                    htmlStr = htmlStr + "<li onclick = " + detail + "> <p>" + item.id + "</p>" + item.date + "<p>" + item.weight + " Kg </p> <p>" + item.reps + " reps </p></li>";
                                                 }
                                                 dataTable.innerHTML = htmlStr;
                                             }
@@ -70,9 +70,13 @@
                             function init() {
                                 document.addEventListener("deviceready", onDeviceReady, false);
                             }
-                            
+
                             function goToAddBench() {
                                 window.location.href = "addBench.html";
+                            }
+
+                            function goToDetailBench() {
+                                window.location.href = "detailBench.html";
                             }
         </script>
 
@@ -86,9 +90,13 @@
             <header data-role="header">
                 <h1>Bench Press</h1>
             </header>
-            <button onclick="goToAddBench();">Add</button>
-            <ul data-role="listview" data-inset="true" id="data-table">
-            </ul>           
+            <div data-role="content">
+                <button onclick="goToAddBench();">Add</button>
+                <ul data-role="listview" id="data-table">
+                    <li><a href="#">Acura</a></li>
+                    <li><a href="#">Audi</a></li>
+                </ul>     
+            </div>
         </div>
     </body>
 </html>

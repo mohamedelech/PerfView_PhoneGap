@@ -24,6 +24,13 @@
         },
         "cordova-sqlite-plugin": {
             "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-calendar": {
+            "CALENDAR_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "ch.heg.perfview"
         }
     },
     "dependent_plugins": {

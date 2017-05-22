@@ -76,6 +76,38 @@ module.exports = [
         "id": "cordova-sqlite-plugin.SQLite",
         "file": "plugins/cordova-sqlite-plugin/www/sqlite.js",
         "pluginId": "cordova-sqlite-plugin"
+    },
+    {
+        "id": "cordova-plugin-calendar.Calendar",
+        "file": "plugins/cordova-plugin-calendar/www/Calendar.js",
+        "pluginId": "cordova-plugin-calendar",
+        "clobbers": [
+            "Calendar"
+        ]
+    },
+    {
+        "id": "cordova-plugin-device-orientation.CompassError",
+        "file": "plugins/cordova-plugin-device-orientation/www/CompassError.js",
+        "pluginId": "cordova-plugin-device-orientation",
+        "clobbers": [
+            "CompassError"
+        ]
+    },
+    {
+        "id": "cordova-plugin-device-orientation.CompassHeading",
+        "file": "plugins/cordova-plugin-device-orientation/www/CompassHeading.js",
+        "pluginId": "cordova-plugin-device-orientation",
+        "clobbers": [
+            "CompassHeading"
+        ]
+    },
+    {
+        "id": "cordova-plugin-device-orientation.compass",
+        "file": "plugins/cordova-plugin-device-orientation/www/compass.js",
+        "pluginId": "cordova-plugin-device-orientation",
+        "clobbers": [
+            "navigator.compass"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -86,7 +118,9 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-camera": "2.4.1",
-    "cordova-sqlite-plugin": "3.1.1"
+    "cordova-sqlite-plugin": "3.1.1",
+    "cordova-plugin-calendar": "4.5.5",
+    "cordova-plugin-device-orientation": "1.0.8-dev"
 };
 // BOTTOM OF METADATA
 });

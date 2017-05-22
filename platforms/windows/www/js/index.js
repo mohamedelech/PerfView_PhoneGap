@@ -18,20 +18,25 @@
  */
 var app = {
     // Application Constructor
-    initialize: function () {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        document.getElementById("getPosition").addEventListener("click", getPosition);
-         alert('test');
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function () {
-        this.receivedEvent('deviceready');
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
-    receivedEvent: function (id) {
+    receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -41,41 +46,6 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
-
 };
 
-function getPosition() {
-
-    var options = {
-        enableHighAccuracy: true,
-        maximumAge: 3600000
-    }
-
-    var watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-
-    function onSuccess(position) {
-
-        alert('Latitude: ' + position.coords.latitude + '\n' +
-                'Longitude: ' + position.coords.longitude + '\n' +
-                'Altitude: ' + position.coords.altitude + '\n' +
-                'Accuracy: ' + position.coords.accuracy + '\n' +
-                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-                'Heading: ' + position.coords.heading + '\n' +
-                'Speed: ' + position.coords.speed + '\n' +
-                'Timestamp: ' + position.timestamp + '\n');
-    }
-    ;
-
-    function onError(error) {
-        alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-    }
-}
-
 app.initialize();
-
-var app = angular.module('my-app', [])
-
-.controller('main-controller', ['$scope', function($scope)
-{
-
-}]);

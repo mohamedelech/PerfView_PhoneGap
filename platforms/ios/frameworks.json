@@ -1,6 +1,8 @@
 {
-    "CoreLocation.framework": 2,
+    "CoreLocation.framework": 3,
     "ImageIO.framework": 1,
     "AVFoundation.framework": 1,
-    "libsqlite3.dylib": 1
+    "libsqlite3.dylib": 1,
+    "EventKit.framework": 1,
+    "EventKitUI.framework": 1
 }

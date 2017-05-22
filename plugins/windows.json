@@ -21,6 +21,12 @@
         },
         "cordova-sqlite-plugin": {
             "PACKAGE_NAME": "HelloCordova"
+        },
+        "cordova-plugin-calendar": {
+            "PACKAGE_NAME": "HelloCordova"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "HelloCordova"
         }
     },
     "dependent_plugins": {

@@ -27,6 +27,10 @@
 		40C0983DE5A643BF962A6829 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78526A79272E4CEE902E9856 /* AVFoundation.framework */; };
 		1FF7B731557748BD9B51FA7C /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEF2C4313D449388DAD0E95 /* SQLitePlugin.m */; };
 		3B1E528ABA984C5EAB941724 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3ABEC04D9F742F18F960FFC /* libsqlite3.dylib */; };
+		068E2E7835434F0196271DA5 /* Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB366ECE1E4449A12C6008 /* Calendar.m */; };
+		6C4DE527F8F44150A95E0B10 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23E27BF86D549A28C6F98A5 /* EventKit.framework */; };
+		B897FBF4D5B94176AE1B97A2 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9459EC7AC3F488D829B1A19 /* EventKitUI.framework */; };
+		C7726D01C0174D48875F8266 /* CDVCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A6CA4C1E444CFAAFB88E85 /* CDVCompass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +89,12 @@
 		FDEF2C4313D449388DAD0E95 /* SQLitePlugin.m */ = {isa = PBXFileReference; name = "SQLitePlugin.m"; path = "cordova-sqlite-plugin/SQLitePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		01DBE02848B9431B94846D61 /* SQLitePlugin.h */ = {isa = PBXFileReference; name = "SQLitePlugin.h"; path = "cordova-sqlite-plugin/SQLitePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		B3ABEC04D9F742F18F960FFC /* libsqlite3.dylib */ = {isa = PBXFileReference; name = "libsqlite3.dylib"; path = "usr/lib/libsqlite3.dylib"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = compiled.mach-o.dylib; explicitFileType = undefined; includeInIndex = 0; };
+		49CB366ECE1E4449A12C6008 /* Calendar.m */ = {isa = PBXFileReference; name = "Calendar.m"; path = "cordova-plugin-calendar/Calendar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		76C4D0BFDE5F499A8BAFDE58 /* Calendar.h */ = {isa = PBXFileReference; name = "Calendar.h"; path = "cordova-plugin-calendar/Calendar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E23E27BF86D549A28C6F98A5 /* EventKit.framework */ = {isa = PBXFileReference; name = "EventKit.framework"; path = "System/Library/Frameworks/EventKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		E9459EC7AC3F488D829B1A19 /* EventKitUI.framework */ = {isa = PBXFileReference; name = "EventKitUI.framework"; path = "System/Library/Frameworks/EventKitUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		45A6CA4C1E444CFAAFB88E85 /* CDVCompass.m */ = {isa = PBXFileReference; name = "CDVCompass.m"; path = "cordova-plugin-device-orientation/CDVCompass.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		DA75DA4E751244249FC6412F /* CDVCompass.h */ = {isa = PBXFileReference; name = "CDVCompass.h"; path = "cordova-plugin-device-orientation/CDVCompass.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,8 @@
 				5EAA583FD2884935A78134A9 /* ImageIO.framework in Frameworks */,
 				40C0983DE5A643BF962A6829 /* AVFoundation.framework in Frameworks */,
 				3B1E528ABA984C5EAB941724 /* libsqlite3.dylib in Frameworks */,
+				6C4DE527F8F44150A95E0B10 /* EventKit.framework in Frameworks */,
+				B897FBF4D5B94176AE1B97A2 /* EventKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +184,8 @@
 				90F5A74F3545403BAE1B79B2 /* ImageIO.framework */,
 				78526A79272E4CEE902E9856 /* AVFoundation.framework */,
 				B3ABEC04D9F742F18F960FFC /* libsqlite3.dylib */,
+				E23E27BF86D549A28C6F98A5 /* EventKit.framework */,
+				E9459EC7AC3F488D829B1A19 /* EventKitUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,6 +224,10 @@
 				3AB0DDF56DA14C2BA1074B4D /* CDVExif.h */,
 				FDEF2C4313D449388DAD0E95 /* SQLitePlugin.m */,
 				01DBE02848B9431B94846D61 /* SQLitePlugin.h */,
+				49CB366ECE1E4449A12C6008 /* Calendar.m */,
+				76C4D0BFDE5F499A8BAFDE58 /* Calendar.h */,
+				45A6CA4C1E444CFAAFB88E85 /* CDVCompass.m */,
+				DA75DA4E751244249FC6412F /* CDVCompass.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -329,6 +347,8 @@
 				66A1B31F46974BA1AEA86430 /* CDVCamera.m in Sources */,
 				36AA21B5058E4E52BC03946C /* CDVJpegHeaderWriter.m in Sources */,
 				1FF7B731557748BD9B51FA7C /* SQLitePlugin.m in Sources */,
+				068E2E7835434F0196271DA5 /* Calendar.m in Sources */,
+				C7726D01C0174D48875F8266 /* CDVCompass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

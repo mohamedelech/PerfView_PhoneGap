@@ -27,6 +27,14 @@
                         {
                             "xml": "<feature name=\"SQLitePlugin\"><param name=\"ios-package\" value=\"SQLitePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Calendar\"><param name=\"ios-package\" value=\"Calendar\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Compass\"><param name=\"ios-package\" value=\"CDVCompass\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +58,18 @@
                         }
                     ],
                     "NSPhotoLibraryUsageDescription": [
+                        {
+                            "xml": "<string> </string>",
+                            "count": 1
+                        }
+                    ],
+                    "CFBundleLocalizations": [
+                        {
+                            "xml": "<array><string>en</string><string>de</string><string>nl</string><string>fr</string><string>it</string></array>",
+                            "count": 1
+                        }
+                    ],
+                    "NSCalendarsUsageDescription": [
                         {
                             "xml": "<string> </string>",
                             "count": 1
@@ -79,6 +99,13 @@
             "PACKAGE_NAME": "ch.heg.perfview"
         },
         "cordova-sqlite-plugin": {
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-calendar": {
+            "CALENDAR_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-device-orientation": {
             "PACKAGE_NAME": "ch.heg.perfview"
         }
     },
@@ -160,6 +187,38 @@
             "id": "cordova-sqlite-plugin.SQLite",
             "file": "plugins/cordova-sqlite-plugin/www/sqlite.js",
             "pluginId": "cordova-sqlite-plugin"
+        },
+        {
+            "id": "cordova-plugin-calendar.Calendar",
+            "file": "plugins/cordova-plugin-calendar/www/Calendar.js",
+            "pluginId": "cordova-plugin-calendar",
+            "clobbers": [
+                "Calendar"
+            ]
+        },
+        {
+            "id": "cordova-plugin-device-orientation.CompassError",
+            "file": "plugins/cordova-plugin-device-orientation/www/CompassError.js",
+            "pluginId": "cordova-plugin-device-orientation",
+            "clobbers": [
+                "CompassError"
+            ]
+        },
+        {
+            "id": "cordova-plugin-device-orientation.CompassHeading",
+            "file": "plugins/cordova-plugin-device-orientation/www/CompassHeading.js",
+            "pluginId": "cordova-plugin-device-orientation",
+            "clobbers": [
+                "CompassHeading"
+            ]
+        },
+        {
+            "id": "cordova-plugin-device-orientation.compass",
+            "file": "plugins/cordova-plugin-device-orientation/www/compass.js",
+            "pluginId": "cordova-plugin-device-orientation",
+            "clobbers": [
+                "navigator.compass"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -168,6 +227,8 @@
         "cordova-plugin-compat": "1.1.0",
         "cordova-plugin-geolocation": "2.4.3",
         "cordova-plugin-camera": "2.4.1",
-        "cordova-sqlite-plugin": "3.1.1"
+        "cordova-sqlite-plugin": "3.1.1",
+        "cordova-plugin-calendar": "4.5.5",
+        "cordova-plugin-device-orientation": "1.0.8-dev"
     }
 }

@@ -3,7 +3,6 @@
     <head>
         <title>Perf View</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
@@ -65,12 +64,15 @@
         <core-header-panel navigation flex mode="seamed">
             <core-toolbar id="core_toolbar">Menu</core-toolbar>
             <core-menu theme="core-light-theme">
-                <core-item icon="photo" label="Camera" >
+                <core-item icon="video" label="Camera" >
                      <a href="javascript:capturePhoto()"></a>
                 </core-item>             
-                <core-item icon="event" label="Agenda"></core-item>                
-                <core-item icon="description" label="Saisie Performance"></core-item>
-                <core-item icon="explore" label="Boussole"></core-item>
+                <core-item icon="event" label="Agenda">
+                    <a href="calendar.html"></a>
+                </core-item>                
+                <core-item icon="explore" label="Boussole">
+                    <a href="compass.html"></a>
+                </core-item>
                 <core-item icon="star" label="Réalité augmentée"></core-item>
                 <core-item icon="search" label="Reconnaitre mouvement"></core-item>
             </core-menu>

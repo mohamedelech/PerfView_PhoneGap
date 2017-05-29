@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
         <link href="css/index.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/jquery.mobile.datepicker.css" rel="stylesheet" type="text/css"/>
         <link href="css/jquery.mobile.datepicker.theme.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery.js" type="text/javascript"></script>
@@ -32,6 +33,8 @@
                 repsInput = document.getElementById("reps");
                 addressInput = document.getElementById("address");
 
+                id = location.search.split('ID=')[1];
+
                 db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
 
                 pictureSource = navigator.camera.PictureSourceType;
@@ -45,7 +48,7 @@
                 db.transaction(
                         //function sql statements
                                 function (tx) {
-                                    tx.executeSql('SELECT * FROM Performances WHERE id = 13',
+                                    tx.executeSql('SELECT * FROM Performances WHERE id =' + id,
                                             [],
                                             function (tx, results) {
                                                 for (var index = 0; index < results.rows.length; index++) {
@@ -70,7 +73,7 @@
                 db.transaction(
                         //function sql statements
                                 function (tx) {
-                                    tx.executeSql('DELETE FROM Performances WHERE id = 1',
+                                    tx.executeSql('DELETE FROM Performances WHERE id =' + id,
                                             [], function (err) {
                                     },
                                             function (err) {
@@ -95,7 +98,12 @@
                                 db.transaction(
                                         //function sql statements
                                                 function (tx) {
-                                                    tx.executeSql('UPDATE Performances SET date = "' + dateInput.value + '", weight = "' + weightInput.value + '", reps = "' + repsInput.value + '",photo = "' + imagedata + '",address = "' + addressInput.value + '" WHERE id = 13',
+                                                    tx.executeSql('UPDATE Performances SET date = "'
+                                                            + dateInput.value + '", weight = "'
+                                                            + weightInput.value + '", reps = "'
+                                                            + repsInput.value + '",photo = "'
+                                                            + imagedata + '",address = "'
+                                                            + addressInput.value + '" WHERE id =' + id,
                                                             [], function (err) {
                                                     },
                                                             function (err) {
@@ -142,13 +150,18 @@
                                             function onFail(message) {
                                                 alert('Failed because: ' + message);
                                             }
+
+                                            function goToList() {
+                                                window.location.href = "benchList.html";
+                                            }
         </script>
     </head>
     <body onload="init()">
         <div data-role="page">
-            <div data-role="header">
-                <h1>Bench Press</h1>
-            </div><!-- /header -->
+                <header data-role="header">
+                    <img onclick="goToList();" src="images/back.png" width="50px" />
+                    <font>Detail Bench Press</font>
+                </header>
             <div data-role="content">
                 <div>
                     <label>Date</label>

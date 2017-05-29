@@ -15,9 +15,9 @@
             var firstNameBox = null;
             var lastNameBox = null;
             var db = null;
-            var detail = "goToDetailBench();";
             var dataTable = null;
-            /** Called when phonegap javascript is loaded */
+
+
             function onDeviceReady() {
                 dataTable = document.getElementById("data-table");
 
@@ -38,9 +38,13 @@
                                                 var htmlStr = "";
                                                 for (var index = 0; index < results.rows.length; index++) {
                                                     var item = results.rows.item(index);
-                                                   // htmlStr = htmlStr + "<li onclick = " + detail + "> <p>" + item.id + "</p>" + item.date + "<p>" + item.weight + " Kg </p> <p>" + item.reps + " reps </p></li>";
+                                                   htmlStr = htmlStr + "<li onclick = " +
+                                                           "'goToDetailBench(" + item.id + ");'" + "> <p><h2>" 
+                                                           + item.date + "</h2></p> <p>" 
+                                                           + item.weight + " Kg </p> <p>" 
+                                                           + item.reps + " reps </p></li>";
                                                 }
-                                               // dataTable.innerHTML = htmlStr;
+                                                dataTable.innerHTML = htmlStr;
                                             }
                                     ,
                                             function (err) {
@@ -75,8 +79,13 @@
                                 window.location.href = "addBench.html";
                             }
 
-                            function goToDetailBench() {
-                                window.location.href = "detailBench.html";
+                            function goToDetailBench(id) {
+                                console.log(id);
+                                window.location.href = "detailBench.html?ID="+ id;
+                            }
+                            
+                            function goToHome() {
+                                window.location.href = "index.html";
                             }
         </script>
 
@@ -88,13 +97,12 @@
     <body onLoad="init();">
         <div data-role="page">
             <header data-role="header">
-                <h1>Bench Press</h1>
+                <img onclick="goToHome();" src="images/back.png" width="50px" />
+                <font>Bench Press</font>
             </header>
             <div data-role="content">
                 <button onclick="goToAddBench();">Add</button>
                 <ul data-role="listview" id="data-table">
-                    <li><a href="#">Acura</a></li>
-                    <li><a href="#">Audi</a></li>
                 </ul>     
             </div>
         </div>

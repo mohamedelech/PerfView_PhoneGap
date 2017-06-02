@@ -31,6 +31,10 @@
 		6C4DE527F8F44150A95E0B10 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23E27BF86D549A28C6F98A5 /* EventKit.framework */; };
 		B897FBF4D5B94176AE1B97A2 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9459EC7AC3F488D829B1A19 /* EventKitUI.framework */; };
 		C7726D01C0174D48875F8266 /* CDVCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A6CA4C1E444CFAAFB88E85 /* CDVCompass.m */; };
+		F7DBF88FAF26492F85938162 /* NativeAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBFB1F4C2ED4E69A334889C /* NativeAudio.m */; };
+		A568B84290624573B8323962 /* NativeAudioAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6DE62DC1B24786BD95AF89 /* NativeAudioAsset.m */; };
+		DAD270EBCAE4473380E6BE20 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA8567CA23444AAA3A2570C /* Foundation.framework */; };
+		92BB8508D79246ECACC546C9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A11320C67A947C7B0091F70 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +99,12 @@
 		E9459EC7AC3F488D829B1A19 /* EventKitUI.framework */ = {isa = PBXFileReference; name = "EventKitUI.framework"; path = "System/Library/Frameworks/EventKitUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		45A6CA4C1E444CFAAFB88E85 /* CDVCompass.m */ = {isa = PBXFileReference; name = "CDVCompass.m"; path = "cordova-plugin-device-orientation/CDVCompass.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		DA75DA4E751244249FC6412F /* CDVCompass.h */ = {isa = PBXFileReference; name = "CDVCompass.h"; path = "cordova-plugin-device-orientation/CDVCompass.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		7BBFB1F4C2ED4E69A334889C /* NativeAudio.m */ = {isa = PBXFileReference; name = "NativeAudio.m"; path = "cordova-plugin-nativeaudio/NativeAudio.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		1C6DE62DC1B24786BD95AF89 /* NativeAudioAsset.m */ = {isa = PBXFileReference; name = "NativeAudioAsset.m"; path = "cordova-plugin-nativeaudio/NativeAudioAsset.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		B4116CF28CFB4E1F855E9919 /* NativeAudio.h */ = {isa = PBXFileReference; name = "NativeAudio.h"; path = "cordova-plugin-nativeaudio/NativeAudio.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		2B7E3479AF3747B8834BA5D5 /* NativeAudioAsset.h */ = {isa = PBXFileReference; name = "NativeAudioAsset.h"; path = "cordova-plugin-nativeaudio/NativeAudioAsset.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		9DA8567CA23444AAA3A2570C /* Foundation.framework */ = {isa = PBXFileReference; name = "Foundation.framework"; path = "System/Library/Frameworks/Foundation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		9A11320C67A947C7B0091F70 /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +119,8 @@
 				3B1E528ABA984C5EAB941724 /* libsqlite3.dylib in Frameworks */,
 				6C4DE527F8F44150A95E0B10 /* EventKit.framework in Frameworks */,
 				B897FBF4D5B94176AE1B97A2 /* EventKitUI.framework in Frameworks */,
+				DAD270EBCAE4473380E6BE20 /* Foundation.framework in Frameworks */,
+				92BB8508D79246ECACC546C9 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +198,8 @@
 				B3ABEC04D9F742F18F960FFC /* libsqlite3.dylib */,
 				E23E27BF86D549A28C6F98A5 /* EventKit.framework */,
 				E9459EC7AC3F488D829B1A19 /* EventKitUI.framework */,
+				9DA8567CA23444AAA3A2570C /* Foundation.framework */,
+				9A11320C67A947C7B0091F70 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +242,10 @@
 				76C4D0BFDE5F499A8BAFDE58 /* Calendar.h */,
 				45A6CA4C1E444CFAAFB88E85 /* CDVCompass.m */,
 				DA75DA4E751244249FC6412F /* CDVCompass.h */,
+				7BBFB1F4C2ED4E69A334889C /* NativeAudio.m */,
+				1C6DE62DC1B24786BD95AF89 /* NativeAudioAsset.m */,
+				B4116CF28CFB4E1F855E9919 /* NativeAudio.h */,
+				2B7E3479AF3747B8834BA5D5 /* NativeAudioAsset.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -349,6 +367,8 @@
 				1FF7B731557748BD9B51FA7C /* SQLitePlugin.m in Sources */,
 				068E2E7835434F0196271DA5 /* Calendar.m in Sources */,
 				C7726D01C0174D48875F8266 /* CDVCompass.m in Sources */,
+				F7DBF88FAF26492F85938162 /* NativeAudio.m in Sources */,
+				A568B84290624573B8323962 /* NativeAudioAsset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -141,12 +141,17 @@
                                     }
                                 });
                             }
+                            
+                            function goToList() {
+                                window.location.href = "benchList.html";
+                            }
         </script>
     </head>
     <body onload="init()">
         <div data-role="page">
             <div data-role="header">
-                <h1>Bench Press</h1>
+                <img onclick="goToList();" src="images/back.png" width="50px" />
+                <font>Add Bench Press</font>
             </div><!-- /header -->
             <div data-role="content">
                 <div>

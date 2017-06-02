@@ -31,6 +31,9 @@
         },
         "cordova-plugin-device-orientation": {
             "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "ch.heg.perfview"
         }
     },
     "dependent_plugins": {

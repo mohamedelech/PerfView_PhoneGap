@@ -72,6 +72,15 @@ module.exports = [
         "id": "cordova-plugin-device-orientation.CompassProxy",
         "pluginId": "cordova-plugin-device-orientation",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio-browser.js",
+        "id": "cordova-plugin-nativeaudio.NativeAudioBrowser",
+        "pluginId": "cordova-plugin-nativeaudio",
+        "clobbers": [
+            "cordova.plugins.NativeAudio",
+            "plugins.NativeAudio"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -84,7 +93,8 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.4.1",
     "cordova-sqlite-plugin": "3.1.1",
     "cordova-plugin-calendar": "4.5.5",
-    "cordova-plugin-device-orientation": "1.0.8-dev"
+    "cordova-plugin-device-orientation": "1.0.8-dev",
+    "cordova-plugin-nativeaudio": "3.0.9"
 }
 // BOTTOM OF METADATA
 });

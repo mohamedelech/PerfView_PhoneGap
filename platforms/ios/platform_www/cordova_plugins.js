@@ -108,6 +108,14 @@ module.exports = [
         "clobbers": [
             "navigator.compass"
         ]
+    },
+    {
+        "id": "cordova-plugin-nativeaudio.nativeaudio",
+        "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
+        "pluginId": "cordova-plugin-nativeaudio",
+        "clobbers": [
+            "window.plugins.NativeAudio"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -120,7 +128,8 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.4.1",
     "cordova-sqlite-plugin": "3.1.1",
     "cordova-plugin-calendar": "4.5.5",
-    "cordova-plugin-device-orientation": "1.0.8-dev"
+    "cordova-plugin-device-orientation": "1.0.8-dev",
+    "cordova-plugin-nativeaudio": "3.0.9"
 };
 // BOTTOM OF METADATA
 });

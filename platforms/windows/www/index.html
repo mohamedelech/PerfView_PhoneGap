@@ -14,6 +14,7 @@
         <link rel="import" href="bower_components/paper-fab/paper-fab.html">
         <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link rel="import" href="../iron-icons/maps-icons.html">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="js/jquery.js" type="text/javascript"></script>
         <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -64,7 +65,7 @@
         <core-header-panel navigation flex mode="seamed">
             <core-toolbar id="core_toolbar">Menu</core-toolbar>
             <core-menu theme="core-light-theme">
-                <core-item icon="video" label="Camera" >
+                <core-item icon="perm-media" label="Camera" >
                      <a href="javascript:capturePhoto()"></a>
                 </core-item>             
                 <core-item icon="event" label="Agenda">
@@ -74,7 +75,9 @@
                     <a href="compass.html"></a>
                 </core-item>
                 <core-item icon="star" label="Réalité augmentée"></core-item>
-                <core-item icon="search" label="Reconnaitre mouvement"></core-item>
+                <core-item icon="search" label="Reconnaitre mouvement">
+                    <a href="accelerometer.html"></a>
+                </core-item>
             </core-menu>
         </core-header-panel>
         <div tool>Perf View</div>

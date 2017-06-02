@@ -30,10 +30,22 @@
         },
         "cordova-plugin-nativeaudio": {
             "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "ch.heg.perfview"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "ch.heg.perfview"
+        },
+        "es6-promise-plugin": {
             "PACKAGE_NAME": "ch.heg.perfview"
         }
     }

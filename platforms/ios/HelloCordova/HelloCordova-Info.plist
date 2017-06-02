@@ -68,5 +68,7 @@
     </array>
     <key>NSCalendarsUsageDescription</key>
     <string/>
+    <key>NSContactsUsageDescription</key>
+    <string/>
   </dict>
 </plist>

@@ -24,144 +24,143 @@
             var db = null;
             var id = null;
             var imagedata;
-            var pictureSource;   // picture source
+            var shareImg;
+            var pictureSource; // picture source
             var destinationType; // sets the format of returned value
             /** Called when phonegap javascript is loaded */
             function onDeviceReady() {
-                dateInput = document.getElementById("date");
-                weightInput = document.getElementById("weight");
-                repsInput = document.getElementById("reps");
-                addressInput = document.getElementById("address");
+            dateInput = document.getElementById("date");
+            weightInput = document.getElementById("weight");
+            repsInput = document.getElementById("reps");
+            addressInput = document.getElementById("address");
+            id = location.search.split('ID=')[1];
+            db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000); //name,version,display name, size
 
-                id = location.search.split('ID=')[1];
-
-                db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
-
-                pictureSource = navigator.camera.PictureSourceType;
-                destinationType = navigator.camera.DestinationType;
-
-                selectPerf();
+            pictureSource = navigator.camera.PictureSourceType;
+            destinationType = navigator.camera.DestinationType;
+            selectPerf();
             }
 
 
             function selectPerf() {
-                db.transaction(
-                        //function sql statements
-                                function (tx) {
-                                    tx.executeSql('SELECT * FROM Performances WHERE id =' + id,
-                                            [],
-                                            function (tx, results) {
-                                                for (var index = 0; index < results.rows.length; index++) {
-                                                    var item = results.rows.item(index);
-                                                    dateInput.value = item.date;
-                                                    weightInput.value = item.weight;
-                                                    repsInput.value = item.reps;
-                                                    addressInput.value = item.address;
-                                                    onPhotoDataSuccess(item.photo);
-                                                }
-                                            }
-                                    ,
-                                            function (err) {
-                                                alert("Unable to fetch result from Performances Table");
-                                            }
-                                    );
-                                }
-                        );
+            db.transaction(
+                    //function sql statements
+                            function (tx) {
+                            tx.executeSql('SELECT * FROM Performances WHERE id =' + id,
+                            [],
+                                    function (tx, results) {
+                                    for (var index = 0; index < results.rows.length; index++) {
+                                    var item = results.rows.item(index);
+                                    dateInput.value = item.date;
+                                    weightInput.value = item.weight;
+                                    repsInput.value = item.reps;
+                                    addressInput.value = item.address;
+                                    onPhotoDataSuccess(item.photo);
+                                    }
+                                    }
+                            ,
+                                    function (err) {
+                                    alert("Unable to fetch result from Performances Table");
+                                    }
+                            );
+                            }
+                    );
                     }
 
             function deletePerf() {
-                db.transaction(
-                        //function sql statements
-                                function (tx) {
-                                    tx.executeSql('DELETE FROM Performances WHERE id =' + id,
-                                            [], function (err) {
+            db.transaction(
+                    //function sql statements
+                            function (tx) {
+                            tx.executeSql('DELETE FROM Performances WHERE id =' + id,
+                            [], function (err) {
+                            },
+                                    function (err) {
+                                    alert("Unable to delete this perf from Performances Table");
+                                    }
+                            );
+                            },
+                            //error callback
+                                    function (err) {
+                                    alert("error callback " + err.code + " " + err.message);
                                     },
+                                    //success callback
                                             function (err) {
-                                                alert("Unable to delete this perf from Performances Table");
+                                            window.location.href = "benchList.html";
+                                            alert("Performance deleted");
                                             }
                                     );
-                                },
-                                //error callback
-                                        function (err) {
-                                            alert("error callback " + err.code + " " + err.message);
-
-                                        },
-                                        //success callback
-                                                function (err) {
-                                                    window.location.href = "benchList.html";
-                                                    alert("Performance deleted");
-                                                }
-                                        );
                                     }
 
                             function updatePerf() {
-                                db.transaction(
-                                        //function sql statements
-                                                function (tx) {
-                                                    tx.executeSql('UPDATE Performances SET date = "'
-                                                            + dateInput.value + '", weight = "'
-                                                            + weightInput.value + '", reps = "'
-                                                            + repsInput.value + '",photo = "'
-                                                            + imagedata + '",address = "'
-                                                            + addressInput.value + '" WHERE id =' + id,
-                                                            [], function (err) {
+                            db.transaction(
+                                    //function sql statements
+                                            function (tx) {
+                                            tx.executeSql('UPDATE Performances SET date = "'
+                                                    + dateInput.value + '", weight = "'
+                                                    + weightInput.value + '", reps = "'
+                                                    + repsInput.value + '",photo = "'
+                                                    + imagedata + '",address = "'
+                                                    + addressInput.value + '" WHERE id =' + id,
+                                            [], function (err) {
+                                            },
+                                                    function (err) {
+                                                    alert("Unable to update this perf");
+                                                    }
+                                            );
+                                            },
+                                            //error callback
+                                                    function (err) {
+                                                    alert("error callback " + err.code + " " + err.message);
                                                     },
+                                                    //success callback
                                                             function (err) {
-                                                                alert("Unable to update this perf");
+                                                            window.location.href = "benchList.html";
+                                                            alert("Performance updated");
                                                             }
                                                     );
-                                                },
-                                                //error callback
-                                                        function (err) {
-                                                            alert("error callback " + err.code + " " + err.message);
-
-                                                        },
-                                                        //success callback
-                                                                function (err) {
-                                                                    window.location.href = "benchList.html";
-                                                                    alert("Performance updated");
-                                                                }
-                                                        );
                                                     }
 
 
                                             /** Called when browser load this page*/
                                             function init() {
-                                                document.addEventListener("deviceready", onDeviceReady, false);
+                                            document.addEventListener("deviceready", onDeviceReady, false);
                                             }
 
                                             function onPhotoDataSuccess(imageData) {
 
-                                                var smallImage = document.getElementById('smallImage');
-
-                                                smallImage.style.display = 'block';
-
-                                                smallImage.src = "data:image/jpeg;base64," + imageData;
-                                                imagedata = imageData;
+                                            var smallImage = document.getElementById('smallImage');
+                                            smallImage.style.display = 'block';
+                                            smallImage.src = "data:image/jpeg;base64," + imageData;
+                                            shareImg = "data:image/jpeg;base64," + imageData;
+                                            imagedata = imageData;
                                             }
 
                                             function getPhoto(source) {
-                                                // Retrieve image file location from specified source
-                                                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50,
+                                            // Retrieve image file location from specified source
+                                            navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50,
                                                     destinationType: destinationType.DATA_URL,
                                                     sourceType: source});
                                             }
 
                                             function onFail(message) {
-                                                alert('Failed because: ' + message);
+                                            alert('Failed because: ' + message);
                                             }
 
                                             function goToList() {
-                                                window.location.href = "benchList.html";
+                                            window.location.href = "benchList.html";
                                             }
+
         </script>
     </head>
     <body onload="init()">
         <div data-role="page">
-                <header data-role="header">
-                    <img onclick="goToList();" src="images/back.png" width="50px" />
-                    <font>Detail Bench Press</font>
-                </header>
+            <header data-role="header">
+                <img onclick="goToList();" src="images/back.png" width="15%" />
+                <font>Detail Bench Press</font>
+                <img onclick="window.plugins.socialsharing.share('Bench Press\n\
+                        Weight : ' + weightInput.value + '\n\
+                        Reps : ' + repsInput.value, null, shareImg, null)" src="images/ShareIcon.png" width="15%" align="right" alt=""/>
+            </header>
             <div data-role="content">
                 <div>
                     <label>Date</label>

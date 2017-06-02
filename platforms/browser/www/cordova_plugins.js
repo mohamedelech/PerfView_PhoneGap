@@ -81,6 +81,127 @@ module.exports = [
             "cordova.plugins.NativeAudio",
             "plugins.NativeAudio"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/contacts.js",
+        "id": "cordova-plugin-contacts.contacts",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "navigator.contacts"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/Contact.js",
+        "id": "cordova-plugin-contacts.Contact",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "Contact"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/convertUtils.js",
+        "id": "cordova-plugin-contacts.convertUtils",
+        "pluginId": "cordova-plugin-contacts"
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/ContactAddress.js",
+        "id": "cordova-plugin-contacts.ContactAddress",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "ContactAddress"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/ContactError.js",
+        "id": "cordova-plugin-contacts.ContactError",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "ContactError"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/ContactField.js",
+        "id": "cordova-plugin-contacts.ContactField",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "ContactField"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/ContactFindOptions.js",
+        "id": "cordova-plugin-contacts.ContactFindOptions",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "ContactFindOptions"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/ContactName.js",
+        "id": "cordova-plugin-contacts.ContactName",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "ContactName"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/ContactOrganization.js",
+        "id": "cordova-plugin-contacts.ContactOrganization",
+        "pluginId": "cordova-plugin-contacts",
+        "clobbers": [
+            "ContactOrganization"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/www/ContactFieldType.js",
+        "id": "cordova-plugin-contacts.ContactFieldType",
+        "pluginId": "cordova-plugin-contacts",
+        "merges": [
+            ""
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-contacts/src/browser/ContactsProxy.js",
+        "id": "cordova-plugin-contacts.ContactsProxy",
+        "pluginId": "cordova-plugin-contacts",
+        "merges": [
+            "navigator.contacts"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
+        "id": "cordova-plugin-device-motion.Acceleration",
+        "pluginId": "cordova-plugin-device-motion",
+        "clobbers": [
+            "Acceleration"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-motion/www/accelerometer.js",
+        "id": "cordova-plugin-device-motion.accelerometer",
+        "pluginId": "cordova-plugin-device-motion",
+        "clobbers": [
+            "navigator.accelerometer"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device-motion/src/browser/AccelerometerProxy.js",
+        "id": "cordova-plugin-device-motion.AccelerometerProxy",
+        "pluginId": "cordova-plugin-device-motion",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
+    },
+    {
+        "file": "plugins/es6-promise-plugin/www/promise.js",
+        "id": "es6-promise-plugin.Promise",
+        "pluginId": "es6-promise-plugin",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -94,7 +215,11 @@ module.exports.metadata =
     "cordova-sqlite-plugin": "3.1.1",
     "cordova-plugin-calendar": "4.5.5",
     "cordova-plugin-device-orientation": "1.0.8-dev",
-    "cordova-plugin-nativeaudio": "3.0.9"
+    "cordova-plugin-nativeaudio": "3.0.9",
+    "cordova-plugin-contacts": "2.3.2-dev",
+    "cordova-plugin-device-motion": "1.2.6-dev",
+    "cordova-plugin-x-socialsharing": "5.1.8",
+    "es6-promise-plugin": "4.1.0"
 }
 // BOTTOM OF METADATA
 });

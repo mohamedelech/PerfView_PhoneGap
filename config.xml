@@ -13,7 +13,6 @@
     <plugin name="cordova-plugin-geolocation" spec="1" />
     <plugin name="cordova-plugin-camera" spec="1" />
     <plugin name="cordova-sqlite-plugin" spec="1" />
-    <plugin name="cordova-sqlite-storage" spec="1" />
     <plugin name="cordova-plugin-calendar" spec="1" />
     <plugin name="cordova-plugin-device-orientation" spec="1" />
     <plugin name="cordova-plugin-nativeaudio" spec="1" />

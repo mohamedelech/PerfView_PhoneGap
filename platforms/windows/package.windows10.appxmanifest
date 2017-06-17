@@ -3,10 +3,10 @@
     <Identity Name="ch.heg.perfview" Publisher="CN=$username$" Version="1.0.0.0" />
     <mp:PhoneIdentity PhoneProductId="b934c560-20f1-11e7-87e8-e72396861518" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
     <Properties>
-        <DisplayName>HelloCordova</DisplayName>
-        <PublisherDisplayName>Apache Cordova Team</PublisherDisplayName>
+        <DisplayName>Perf View</DisplayName>
+        <PublisherDisplayName>Mohamed El Ech</PublisherDisplayName>
         <Logo>images\StoreLogo.png</Logo>
-        <Description>A sample Apache Cordova application that responds to the deviceready event.</Description>
+        <Description>Apache Cordova application Perf View</Description>
     </Properties>
     <Dependencies>
         <TargetDeviceFamily MaxVersionTested="10.0.10240.0" MinVersion="10.0.10240.0" Name="Windows.Universal" />
@@ -16,7 +16,7 @@
     </Resources>
     <Applications>
         <Application Id="ch.heg.perfview" StartPage="ms-appx-web://ch.heg.perfview/www/index.html">
-            <uap:VisualElements BackgroundColor="#464646" Description="A sample Apache Cordova application that responds to the deviceready event." DisplayName="HelloCordova" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
+            <uap:VisualElements BackgroundColor="#464646" Description="Apache Cordova application Perf View" DisplayName="Perf View" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
                 <uap:SplashScreen Image="images\splashscreen.png" />
                 <uap:DefaultTile ShortName="HelloCordova" Square310x310Logo="images\Square310x310Logo.png" Square71x71Logo="images\Square71x71Logo.png" Wide310x150Logo="images\Wide310x150Logo.png" />
                 <uap:InitialRotationPreference>

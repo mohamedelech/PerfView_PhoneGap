@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Bench</title>
+        <meta charset=utf-8 />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
+        <link href="css/jquery.mobile.datepicker.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.datepicker.theme.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>       
+        <script src="js/datepicker.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script> 
+        <script src="jquery.mobile.datepicker.js"></script>
+        <script src="js/jquery.mobile.datepicker.js" type="text/javascript"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+        <script type="text/javascript">
+            var dateInput = null;
+            var weightInput = null;
+            var repsInput = null;
+            var addressInput = null;
+            var db = null;
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value
+            var imagedata;
+            /** Called when phonegap javascript is loaded */
+            function onDeviceReady() {
+                dateInput = document.getElementById("date");
+                weightInput = document.getElementById("weight");
+                repsInput = document.getElementById("reps");
+                addressInput = document.getElementById("address");
+                GetGeolocation();
+
+                db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
+
+                pictureSource = navigator.camera.PictureSourceType;
+                destinationType = navigator.camera.DestinationType;
+
+            }
+
+
+            function savePerf() {
+                db.transaction(
+                        //function sql statements
+                                function (tx) {
+                                    ensureTableExists(tx);
+                                    var date = dateInput.value;
+                                    var weight = weightInput.value;
+                                    var reps = repsInput.value;
+                                    var address = addressInput.value;
+
+                                    var sql = 'INSERT INTO Performances (date,weight,reps,movement,photo,address) VALUES ("' + date + '","' + weight + '","' + reps + '","Bench Press","' + imagedata + '","' + address + '")';
+
+                                    tx.executeSql(sql);
+                                },
+                                //error callback
+                                        function (err) {
+                                            alert("error callback " + err.code);
+
+                                        },
+                                        //success callback
+                                                function (err) {
+                                                    window.location.href = "benchList.html";
+                                                    alert("Performance added");
+                                                }
+                                        );
+                                    }
+
+                            function ensureTableExists(tx) {
+                                tx.executeSql('CREATE TABLE IF NOT EXISTS Performances (id INTEGER PRIMARY KEY, date,weight,reps,movement,photo,address)');
+
+                            }
+                            /** Called when browser load this page*/
+                            function init() {
+                                document.addEventListener("deviceready", onDeviceReady, false);
+                            }
+
+                            function onPhotoDataSuccess(imageData) {
+                                // Uncomment to view the base64-encoded image data
+                                // console.log(imageData);
+
+                                // Get image handle
+                                //
+                                var smallImage = document.getElementById('smallImage');
+
+                                // Unhide image elements
+                                //
+                                smallImage.style.display = 'block';
+
+                                // Show the captured photo
+                                // The in-line CSS rules are used to resize the image
+                                //
+                                smallImage.src = "data:image/jpeg;base64," + imageData;
+                                imagedata = imageData;
+                            }
+
+                            function getPhoto(source) {
+                                // Retrieve image file location from specified source
+                                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50,
+                                    destinationType: destinationType.DATA_URL,
+                                    sourceType: source});
+                            }
+
+                            // Called if something bad happens.
+                            //
+                            function onFail(message) {
+                                alert('Failed because: ' + message);
+                            }
+
+                            function GetGeolocation()
+                            {
+                                var options = {timeout: 30000, enableHighAccuracy: true};
+                                navigator.geolocation.getCurrentPosition(GetPosition, PositionError, options);
+                            }
+
+                            function GetPosition(position)
+                            {
+                                var latitude = position.coords.latitude;
+                                var longitude = position.coords.longitude;
+                                ReverseGeocode(latitude, longitude);   // Pass the latitude and longitude to get address.
+                            }
+
+                            function PositionError() {
+                                navigator.notification.alert('Could not find the current location.');
+                            }
+
+                            function ReverseGeocode(latitude, longitude) {
+                                var reverseGeocoder = new google.maps.Geocoder();
+                                var currentPosition = new google.maps.LatLng(latitude, longitude);
+                                reverseGeocoder.geocode({'latLng': currentPosition}, function (results, status) {
+
+                                    if (status == google.maps.GeocoderStatus.OK) {
+                                        if (results[0]) {
+                                            addressInput.value = results[0].formatted_address;
+                                        } else {
+                                            navigator.notification.alert('Unable to detect your address.');
+                                        }
+                                    } else {
+                                        navigator.notification.alert('Unable to detect your address.');
+                                    }
+                                });
+                            }
+                            
+                            function goToList() {
+                                window.location.href = "benchList.html";
+                            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div data-role="page">
+            <div data-role="header">
+                <img onclick="goToList();" src="images/back.png" width="50px" />
+                <font>Add Bench Press</font>
+            </div><!-- /header -->
+            <div data-role="content">
+                <div>
+                    <label>Date</label>
+                    <input id="date" type="text" class="date-input" data-inline="false" data-role="date" >
+                    <label>Weight Kg</label>
+                    <input id="weight" type="number">
+                    <label>Repetitions</label>
+                    <input id="reps" type="number">
+                    <label>Photo</label>
+                    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Import</button><br>
+                    <img style="display:none;width:100% ;" id="smallImage" src="" /><br>
+                    <label>Address</label>
+                    <textarea id="address" cols="40" rows="2"></textarea>
+                    <button onclick="savePerf();">Save</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Perf View</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+        <link href="css/index.css" rel="stylesheet" type="text/css"/>
+        <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+        <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+        <link rel="import" href="bower_components/core-menu/core-menu.html">
+        <link rel="import" href="bower_components/core-item/core-item.html">
+        <link rel="import" href="bower_components/paper-toast/paper-toast.html">
+        <link rel="import" href="bower_components/paper-fab/paper-fab.html">
+        <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link rel="import" href="../iron-icons/maps-icons.html">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value
+
+            // Wait for device API libraries to load
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // device APIs are available
+            //
+            function onDeviceReady() {
+                pictureSource = navigator.camera.PictureSourceType;
+                destinationType = navigator.camera.DestinationType;
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoDataSuccess(imageData) {
+                // Get image handle
+                //
+                 alert('Success photo Saved');
+            }
+     
+            // A button will call this function
+            //
+            function capturePhoto() {
+                // Take picture using device camera and retrieve image as base64-encoded string
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50,
+                    destinationType: destinationType.DATA_URL,
+                    saveToPhotoAlbum: true});
+            }
+        
+            // Called if something bad happens.
+            //
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+
+        </script>
+
+    </head>
+    <body unresolved>
+    <core-scaffold>
+        <core-header-panel navigation flex mode="seamed">
+            <core-toolbar id="core_toolbar">Menu</core-toolbar>
+            <core-menu theme="core-light-theme">
+                <core-item icon="perm-media" label="Camera" >
+                     <a href="javascript:capturePhoto()"></a>
+                </core-item>             
+                <core-item icon="event" label="Agenda">
+                    <a href="calendar.html"></a>
+                </core-item>                
+                <core-item icon="explore" label="Boussole">
+                    <a href="compass.html"></a>
+                </core-item>
+                <core-item icon="star" label="Realite augmentee"></core-item>
+                <core-item icon="search" label="Reconnaitre mouvement">
+                    <a href="accelerometer.html"></a>
+                </core-item>
+            </core-menu>
+        </core-header-panel>
+        <div tool>Perf View</div>
+        <core-card id="core_card" vertical layout start>
+            <div class="container">
+                <div class="row content">
+                    <a class="button" href="benchList.html" >Bench Press</a>
+                </div>
+            </div>
+        </core-card>
+    </core-scaffold>
+</body>
+</html>

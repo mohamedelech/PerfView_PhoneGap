@@ -1,0 +1,110 @@
+
+<html>
+    <head>
+        <link rel="import" href="../core-icons/core-icons.html">
+        <link rel="import" href="../core-icons/av-icons.html">
+        <link rel="import" href="../paper-fab/paper-fab.html">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/index.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript">
+            var firstNameBox = null;
+            var lastNameBox = null;
+            var db = null;
+            var dataTable = null;
+
+
+            function onDeviceReady() {
+                dataTable = document.getElementById("data-table");
+
+                db = window.openDatabase("performanceDB", "1.0", "Performance Database", 1000000);//name,version,display name, size
+
+                loadFromDB();
+            }
+
+            function loadFromDB() {
+
+                db.transaction(
+                        //function sql statements
+                                function (tx) {
+                                    ensureTableExists(tx);
+                                    tx.executeSql('SELECT * FROM Performances',
+                                            [],
+                                            function (tx, results) {
+                                                var htmlStr = "";
+                                                for (var index = 0; index < results.rows.length; index++) {
+                                                    var item = results.rows.item(index);
+                                                   htmlStr = htmlStr + "<li onclick = " +
+                                                           "'goToDetailBench(" + item.id + ");'" + "> <p><h2>" 
+                                                           + item.date + "</h2></p> <p>" 
+                                                           + item.weight + " Kg </p> <p>" 
+                                                           + item.reps + " reps </p></li>";
+                                                }
+                                                dataTable.innerHTML = htmlStr;
+                                            }
+                                    ,
+                                            function (err) {
+                                                alert("Unable to fetch result from Performances Table");
+                                            }
+                                    );
+
+                                },
+                                //error callback
+                                        function (err) {
+                                            alert("error callback " + err.code + " " + err.message);
+
+                                        },
+                                        //success callback
+                                                function () {
+                                                }
+                                        );
+
+
+                                    }
+
+                            function ensureTableExists(tx) {
+                                tx.executeSql('CREATE TABLE IF NOT EXISTS Performances (id INTEGER PRIMARY KEY,date,weight,reps,movement,photo,address)');
+
+                            }
+                            /** Called when browser load this page*/
+                            function init() {
+                                document.addEventListener("deviceready", onDeviceReady, false);
+                            }
+
+                            function goToAddBench() {
+                                window.location.href = "addBench.html";
+                            }
+
+                            function goToDetailBench(id) {
+                                console.log(id);
+                                window.location.href = "detailBench.html?ID="+ id;
+                            }
+                            
+                            function goToHome() {
+                                window.location.href = "index.html";
+                            }
+        </script>
+
+        <title>Bench Press</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body onLoad="init();">
+        <div data-role="page">
+            <header data-role="header">
+                <img onclick="goToHome();" src="images/back.png" width="50px" />
+                <font>Bench Press</font>
+            </header>
+            <div data-role="content">
+                <button onclick="goToAddBench();">Add</button>
+                <ul data-role="listview" id="data-table">
+                </ul>     
+            </div>
+        </div>
+    </body>
+</html>

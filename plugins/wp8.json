@@ -1,0 +1,55 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-calendar": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-nativeaudio": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-sqlite-plugin": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        },
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "{af2ce2a0-5346-11e7-9d93-5fc664411c31}"
+        }
+    }
+}

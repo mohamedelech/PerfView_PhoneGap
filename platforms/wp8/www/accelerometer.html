@@ -6,6 +6,9 @@
         <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <script type="text/javascript" charset="utf-8">
 
+            var counter = 0;
+            var historyY;
+
             // The watch id references the current `watchAcceleration`
             var watchID = null;
 
@@ -23,7 +26,7 @@
             //
             function startWatch() {
 
-                var options = {frequency: 500};
+                var options = {frequency: 300};
 
                 watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
             }
@@ -41,21 +44,38 @@
             //
             function onSuccess(acceleration) {
                 var element = document.getElementById('accelerometer');
-                element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
-                        'Acceleration Y: ' + acceleration.y + '<br />' +
-                        'Acceleration Z: ' + acceleration.z + '<br />' +
-                        'Timestamp: ' + acceleration.timestamp + '<br />';         
+                element.innerHTML = 
+                        '<h1 align="center" >' + counter +' </h1>' ;
+
+                var yChange = historyY - acceleration.y;
+
+                historyY = acceleration.y;
+
+                if (yChange > 2) {
+                    if (counter > 0) {
+                        counter = counter - 1;
+                    }
+                } else if (yChange < -2) {
+                    counter = counter + 1;
+                }
             }
 
             // onError: Failed to get the acceleration
             //
             function onError() {
-                alert('onError!');
+                alert('Failed to get the acceleration');
             }
-            
+
         </script>
     </head>
-    <body>
-        <div id="accelerometer">Waiting for accelerometer...</div>
+       <body>
+        <div data-role="page">          
+            <header data-role="header">
+                <h1 align="center" >Counter</h1>
+            </header>
+            <div data-role="content"  role="main" class="ui-content">
+                <div id="accelerometer">Waiting for accelerometer...</div>
+            </div>
+        </div>
     </body>
 </html>

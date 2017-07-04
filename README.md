@@ -15,4 +15,4 @@ Une fois l'application installé sur votre PC et Smartphone :
   - Lancez le serveur (normalement il se lance tout seul directement après l'import)
   - Ouvrez l'application PhoneGap depuis votre smartphone et connectez vous à l'adress serveur
   
-*Tout le code de l'application se trouve dans le dossier www
+*Tout le code de l'application se trouve dans le dossier "www"

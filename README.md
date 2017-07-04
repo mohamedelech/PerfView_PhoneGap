@@ -13,6 +13,6 @@ Une fois l'application installé sur votre PC et Smartphone :
   - Ouvrir l'application PhoneGap Desktop app et importez le projet dézippé.
         cliquez sur "+/Add" puis sur "Open existing PhoneGap project".
   - Lancez le serveur (normalement il se lance tout seul directement après l'import)
-  - Ouvrez l'application PhoneGap depuis votre smartphone et connectez vous à l'adress serveur
+  - Ouvrez l'application PhoneGap depuis votre smartphone et connectez vous à l'adresse serveur
   
 *Tout le code de l'application se trouve dans le dossier "www"

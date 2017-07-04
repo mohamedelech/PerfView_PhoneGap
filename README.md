@@ -4,8 +4,8 @@ Mise en place :
 
 Ce projet a était développé à l'aide de l'environnement de travail NetBeans un autre IDE peut parfaitement convenir également.
 
-Avant d'importer le projet il va falloir installer PhoneGap Desktop app : https://phonegap.com/getstarted/
-installez le également sur votre smartphone.
+Avant d'importer le projet il va falloir installer PhoneGap Desktop app sur votre PC: https://phonegap.com/getstarted/
+Installez le également sur votre smartphone.
 
 Une fois l'application installé sur votre PC et Smartphone : 
   - Télécharger le zip du projet depuis github
